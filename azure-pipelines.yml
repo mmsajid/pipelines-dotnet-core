@@ -16,7 +16,7 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
   
-- bash: echo "Hello world
+- bash: echo "Hello world"
 
 - bash: terraform --version
   

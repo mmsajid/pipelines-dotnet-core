@@ -12,12 +12,21 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-  
-- bash: echo "Hello world"
+jobs:
+- job: TestJob
+  timeoutInMinutes: 10
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - bash: echo "Hello world"
 
-- bash: terraform --version
+- job: BuildJob
+  timeoutInMinutes: 10
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - script: dotnet build --configuration $(buildConfiguration)
+    displayName: 'dotnet build $(buildConfiguration)'
+
   
 
